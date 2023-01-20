@@ -298,19 +298,33 @@ const createItem = (item) => {
   });
 };
 
-const searchBtnActive = document.querySelector('.fa-solid.fa-magnifying-glass');
+const searchBtnActive = document.querySelector('.search_btn');
+
+// helper functions
+const toggleClass = (el, className) => el.classList.toggle(className);
+const addClass = (el, className) => el.classList.add(className);
+const removeClass = (el, className) => el.classList.remove(className);
 
 searchBtnActive.addEventListener('click', (e) => {
   e.preventDefault();
-  const wrapper = document.querySelector('form > .search_wrapper');
-  const label = document.querySelector('form > .search_wrapper > label');
-  const sInput = document.querySelector('#search');
-  const subBtn = document.querySelector('form > .search_wrapper > #submit');
+  toggleClass(document.querySelector('form > .search_wrapper'), 'active');
+  toggleClass(
+    document.querySelector('form > .search_wrapper > label'),
+    'active'
+  );
+  toggleClass(document.querySelector('#search'), 'active');
+  toggleClass(
+    document.querySelector('form > .search_wrapper > #submit'),
+    'active'
+  );
 
-  wrapper.classList.toggle('active');
-  label.classList.toggle('active');
-  sInput.classList.toggle('active');
-  subBtn.classList.toggle('active');
+  if (searchBtnActive.classList.contains('fa-magnifying-glass')) {
+    removeClass(searchBtnActive, 'fa-magnifying-glass');
+  }
+  /* wrapper.classList.toggle('active');
+  label.classList.toggle('active'); */
+  /* sInput.classList.toggle('active');
+  subBtn.classList.toggle('active'); */
 });
 
 // for the search function get input from form
@@ -321,6 +335,18 @@ form.addEventListener('submit', function (e) {
   console.log('this is the new search value inside submit function: ' + search);
   handleSearch(search);
   form.reset();
+
+  removeClass(document.querySelector('form > .search_wrapper'), 'active');
+  removeClass(
+    document.querySelector('form > .search_wrapper > label'),
+    'active'
+  );
+  removeClass(document.querySelector('#search'), 'active');
+  removeClass(
+    document.querySelector('form > .search_wrapper > #submit'),
+    'active'
+  );
+  addClass(searchBtnActive, 'fa-magnifying-glass');
 });
 
 // function to fetch the search query
