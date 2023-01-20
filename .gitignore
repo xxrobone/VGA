@@ -1,5 +1,7 @@
 /node_modules
+*keys
+/src/keys*keys.js
 *.env
 /dist
-/keys.js
-*keys.js
+
+

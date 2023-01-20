@@ -8,10 +8,11 @@
 }
 
 form .text {
-    font-family: var(--font-primary);
-    font-size: 0.8rem;
+    margin-top: 0.5rem;
     position: absolute;
     left: 57.5%;
+    font-family: var(--font-primary);
+    font-size: 0.8rem;    
     z-index: -1;
 }
 
@@ -54,8 +55,6 @@ i.fa-solid.fa-caret-left {
     justify-content: center;
 }
 
-
-
 .form .search_wrapper label {
     position: absolute;
     left: 0.5rem;
@@ -71,8 +70,6 @@ i.fa-solid.fa-caret-left {
     cursor: pointer;
 }
 
-
-
 form label i::before {
     position: absolute;
     top: 0.25rem;
@@ -82,7 +79,6 @@ form label i::before {
 form input {
     font-size: clamp(0.8rem, 1.2vw, 1rem);
 }
-
 
 form input[type="text"] {
     padding: 0.1rem 0.5rem;

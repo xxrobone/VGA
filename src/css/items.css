@@ -16,6 +16,12 @@
   object-fit: cover;
 }
 
+#items_list.movie_list {
+  background-color: var(--color-movie-bg);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.089), rgba(255, 255, 255, 0.13)),url('../images/alienmovie.svg');
+  background-blend-mode: hard-light;
+}
+
 @media (min-width: 768px) {
 #items_list {
   background-repeat: no-repeat;
@@ -46,14 +52,6 @@
   #items_list {
     width: 100%;
   }
-  
-  .item_card {
-    position: relative;
-    margin: 1rem 1rem;
-    width: 256px;
-    max-height: 320px;
-    height: 100%;
-  }
   }
 
 
@@ -61,15 +59,6 @@
   #items_list {
     width: 80%;
   }
-
-  
-.item_card {
-  position: relative;
-  margin: 1rem 2rem;
-  width: 256px;
-  max-height: 320px;
-  height: 100%;
-}
 }
 
 
