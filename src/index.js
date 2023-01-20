@@ -1,3 +1,7 @@
+import { BASE_URL, API_KEY } from '../keys.js';
+
+console.log(BASE_URL, API_KEY);
+
 let mustplayBtn = document.querySelector('.mustplay_btn');
 let topScoreBtn = document.querySelector('.top_score_btn');
 let topLastyearBtn = document.querySelector('.top_lastyear_btn');
@@ -7,48 +11,46 @@ let errorMsg = document.querySelector('.error_msg');
 const prevBtn = document.querySelector('.prev_btn');
 const nextBtn = document.querySelector('.next_btn');
 const paginationButtons = document.querySelector('.pagination_btns');
-const gamesList = document.querySelector('#games_list');
-/* let gamesArr = [...gamesList.querySelectorAll('.game_card')]; */
-let gamesArr = [];
+const itemsList = document.querySelector('#items_list');
+/* let itemsArr = [...itemsList.querySelectorAll('.item_card')]; */
+let itemsArr = [];
 
 const itemsLimit = 10;
-/* const pageCount = Math.ceil(gamesArr.length / itemsLimit); */
+/* const pageCount = Math.ceil(itemsArr.length / itemsLimit); */
 let pageCount;
 let currentPage = 1;
 
 // queries for different api endpoints
 
-const baseUrl = `${process.env.BASE_URL}?key=${
-  process.env.API_KEY
-}&page=${1}&page_size=${20}`;
+const baseUrl = `${BASE_URL}?key=${API_KEY}&page=${1}&page_size=${20}`;
 
-// found this mustplaygames api enpoint on stackoverflow set an error on purpose on this fetch, take away the /not/ and it works
-const mustplayGamesUrl = `https://rawg.io/not/api/collections/must-play/games?key=${process.env.API_KEY}`;
+// found this mustplayitems api enpoint on stackoverflow set an error on purpose on this fetch, take away the /not/ and it works
+const mustplayitemsUrl = `https://rawg.io/not/api/collections/must-play/items?key=${API_KEY}`;
 
-const upcomingGamesUrl = `${process.env.BASE_URL}?key=${process.env.API_KEY}&dates=2022-01-01,2023-12-01&ordering=-released&page_size=40`;
+const upcomingitemsUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2023-12-01&ordering=-released&page_size=40`;
 
-const topGamesUrl = `${process.env.BASE_URL}?key=${process.env.API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
+const topitemsUrl = `${BASE_URL}?key=${API_KEY}&dates=2010-01-01,2023-01-01&ordering=-rating&page_size=20&metacritic=90,100`;
 
-const topLastYearUrl = `${process.env.BASE_URL}?key=${process.env.API_KEY}&dates=2022-01-01,2022-12-30&ordering=-rating&page_size=20&metacritic=80,100`;
+const topLastYearUrl = `${BASE_URL}?key=${API_KEY}&dates=2022-01-01,2022-12-30&ordering=-rating&page_size=20&metacritic=80,100`;
 
-const SEARCH_GAMES_URL = `${process.env.BASE_URL}?key=${process.env.API_KEY}&search=`;
+const SEARCH_itemS_URL = `${BASE_URL}?key=${API_KEY}&search=`;
 
 let fetchURL = '';
 
 // fetch api
 
-const fetchGAMES = async () => {
+const fetchitemS = async () => {
   try {
     const res = await fetch(baseUrl);
     const data = await res.json();
-    gamesArr = data.results;
+    itemsArr = data.results;
     if (!res.ok) {
       console.log('error getting data');
       return;
     } else {
-      createItem(gamesArr);
-      console.log(gamesArr);
-      getPaginationNumbers(gamesArr);
+      createItem(itemsArr);
+      console.log(itemsArr);
+      getPaginationNumbers(itemsArr);
     }
   } catch (error) {
     console.log(error + 'something went wrong');
@@ -61,17 +63,17 @@ const fetchGAMES = async () => {
   }
 };
 
-// get top games fetch
-/* const mustplayGames = async () => {
+// get top items fetch
+/* const mustplayitems = async () => {
   try {
     const res = await fetch(`${API_URL_TOP}?key=${API_KEY}`);
     const data = await res.json();
-    gamesArr = data.results;
+    itemsArr = data.results;
     if (!res.ok) {
       console.log(data.description);
       return;
     } else {
-      createItem(gamesArr);
+      createItem(itemsArr);
     }
   } catch (error) {
     console.log(error + 'something went wrong');
@@ -83,15 +85,15 @@ const fetchNew = async (url) => {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    gamesArr = data.results;
+    itemsArr = data.results;
     if (!res.ok) {
       console.log(data.description);
       return;
     } else {
-      createItem(gamesArr);
+      createItem(itemsArr);
       console.log(data);
-      console.log(gamesArr);
-      getPaginationNumbers(gamesArr);
+      console.log(itemsArr);
+      getPaginationNumbers(itemsArr);
     }
   } catch (error) {
     console.log(error + 'something went wrong');
@@ -111,11 +113,11 @@ const fetchNew = async (url) => {
 // Nintendo Switch id 7
 
 mustplayBtn.addEventListener('click', () => {
-  fetchURL = mustplayGamesUrl;
+  fetchURL = mustplayitemsUrl;
   fetchNew(fetchURL);
 });
 topScoreBtn.addEventListener('click', () => {
-  fetchURL = topGamesUrl;
+  fetchURL = topitemsUrl;
   fetchNew(fetchURL);
 });
 topLastyearBtn.addEventListener('click', () => {
@@ -123,14 +125,14 @@ topLastyearBtn.addEventListener('click', () => {
   fetchNew(fetchURL);
 });
 upcomingBtn.addEventListener('click', () => {
-  fetchURL = upcomingGamesUrl;
+  fetchURL = upcomingitemsUrl;
   fetchNew(fetchURL);
 });
 
 // window load fetch
 
 window.addEventListener('load', () => {
-  fetchGAMES();
+  fetchitemS();
   setCurrentPage(1);
 
   prevBtn.addEventListener('click', () => {
@@ -217,7 +219,7 @@ const handlePageButtonsStatus = () => {
 };
 
 const setCurrentPage = async (pageNum) => {
-  let data = [...document.querySelectorAll('.game_card')];
+  let data = [...document.querySelectorAll('.item_card')];
   currentPage = pageNum;
   const prevCount = (pageNum - 1) * itemsLimit;
   const currCount = pageNum * itemsLimit;
@@ -233,7 +235,7 @@ const setCurrentPage = async (pageNum) => {
   });
 };
 
-// creating the game cards from the fetch
+// creating the item cards from the fetch
 
 // icons will only use 4 not getting mac, ios, android, etc
 
@@ -243,7 +245,7 @@ const pc = '<i class="fa-solid fa-headset"></i>';
 const nintendo = '<i class="fa-solid fa-n"></i>';
 
 const createItem = (item) => {
-  let ul = gamesList;
+  let ul = itemsList;
   let html = '';
 
   item.forEach((item) => {
@@ -274,17 +276,17 @@ const createItem = (item) => {
     });
 
     html += `
-    <li class="game_card game_card_front">
+    <li class="item_card item_card_front">
                 <img src="${item.background_image}" alt="">
                 <h2>${item.name}</h2>
-                <div class="game_info">
+                <div class="item_info">
                     <div>
-                        <span class="game_score">Rating: ${item.rating}</span>
-                        <span class="game_score">Metacritic: ${item.metacritic}</span>
-                        <p class="game_plattforms">${platforms}</p>
+                        <span class="item_score">Rating: ${item.rating}</span>
+                        <span class="item_score">Metacritic: ${item.metacritic}</span>
+                        <p class="item_plattforms">${platforms}</p>
                     </div>
                 </div>
-                <div class="game_card_back game_review">
+                <div class="item_card_back item_review">
                     <p>review</p>
                     <p>${item.name}</p>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate ipsam fugiat facilis dolorum
@@ -323,7 +325,7 @@ form.addEventListener('submit', function (e) {
 
 // function to fetch the search query
 const handleSearch = async (search) => {
-  fetch(SEARCH_GAMES_URL + `${search}`)
+  fetch(SEARCH_itemS_URL + `${search}`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data.results);

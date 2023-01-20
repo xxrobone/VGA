@@ -1,6 +1,6 @@
 @import url('./card.css');
 
-#games_list {
+#items_list {
   list-style-type: none;
   padding: 2rem 1rem;
   width: 100%;
@@ -17,7 +17,7 @@
 }
 
 @media (min-width: 768px) {
-#games_list {
+#items_list {
   background-repeat: no-repeat;
 }
 }
@@ -43,10 +43,11 @@
 
 
 @media ( width > 480px) {
-  #games_list {
+  #items_list {
     width: 100%;
   }
-  .game_card {
+  
+  .item_card {
     position: relative;
     margin: 1rem 1rem;
     width: 256px;
@@ -57,12 +58,12 @@
 
 
 @media (width > 992px) {
-  #games_list {
+  #items_list {
     width: 80%;
   }
 
   
-.game_card {
+.item_card {
   position: relative;
   margin: 1rem 2rem;
   width: 256px;
