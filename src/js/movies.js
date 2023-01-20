@@ -246,7 +246,7 @@ const createItem = (item) => {
     }
     html += `
     <li class="item_card item_card_front movie">
-                <img src="${itemImg}" alt="">
+                <img src="${itemImg}" img of ${item.title}>
                 <h2>${item.title}</h2>
                 <div class="item_info">
                     <div>
@@ -255,7 +255,7 @@ const createItem = (item) => {
                     </div>
                 </div>
                 <div class="item_card_back item_review">
-                <img class="item_bg_img" src="${reviewImg}"></img>
+                <img class="item_bg_img" src="${reviewImg}" alt="movie img ${item.title}"></img>
                     <div class="overview">
                         <p>Overview: </p>
                         <p>${item.title}</p>

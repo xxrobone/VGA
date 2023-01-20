@@ -1,8 +1,8 @@
 .item_card {
     position: relative;
     margin: 1rem 1rem;
-    min-width: 256px;
-    max-width: 80%;
+    min-width: 180px;
+    max-width: 70%;
     max-height: 320px;
     height: 100%;
     font-family: var(--font-primary);
@@ -43,6 +43,12 @@ transform: scale(1);
     z-index: -1;
   }
   
+  .item_card > img.game_img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
    
   .item_card > h2 {
     text-transform: uppercase;
@@ -55,7 +61,7 @@ transform: scale(1);
     resize: none;
   }
   
-  .item_card > h2, .item_info, .item_desc, .overview {
+  .item_card > h2, .item_desc, .overview {
     padding: 0.25rem 2rem;
     z-index: 1;
   }
@@ -143,7 +149,7 @@ transform: scale(1);
     width: 100%;
     display: block;
     box-shadow: 0 0 10px rgba(0, 0, 0, .25), inset 0 0 1px 0px rgba(207, 207, 207, 0.649);
-    background-color: rgba(0, 0, 0, .0325);
+    background-color: rgba(0, 0, 0, .35);
     overflow-y: scroll;
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
@@ -159,7 +165,7 @@ transform: scale(1);
     overflow: -moz-scrollbars-none;
 }
 
-  .item_review p {
+  .item_review .overview p {
     margin: 0.25rem 0;
     font-family: var(--font-light);
     font-size: 0.8rem;
@@ -175,6 +181,11 @@ transform: scale(1);
     margin: 1rem 1rem;
     width: 256px;
     height: 100%;
+  }
+  .item_card > img.game_img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
   }
   }
 

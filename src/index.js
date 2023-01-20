@@ -275,7 +275,7 @@ const createItem = (item) => {
 
     html += `
     <li class="item_card item_card_front">
-                <img src="${item.background_image}" alt="">
+                <img src="${item.background_image}" class="game_img" alt="img of ${item.name}">
                 <h2>${item.name}</h2>
                 <div class="item_info">
                     <div>
