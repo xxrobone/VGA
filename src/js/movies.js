@@ -47,7 +47,7 @@ const fetchMovies = async () => {
       return;
     } else {
       createItem(itemsArr);
-      console.log(itemsArr);
+      /* console.log(itemsArr); */
       getPaginationNumbers(itemsArr);
     }
   } catch (error) {
@@ -67,12 +67,12 @@ const fetchNew = async (url) => {
     const data = await res.json();
     itemsArr = data.results;
     if (!res.ok) {
-      console.log(data.description);
+      console.log('no data, something went wrong');
       return;
     } else {
       createItem(itemsArr);
-      console.log(data);
-      console.log(itemsArr);
+      /* console.log(data);
+      console.log(itemsArr); */
       getPaginationNumbers(itemsArr);
     }
   } catch (error) {
@@ -302,7 +302,7 @@ const form = document.getElementById('form');
 form.addEventListener('submit', function (e) {
   e.preventDefault(); // so many ways of acutally doing this :D
   let search = document.querySelector('#search').value;
-  console.log('this is the new search value inside submit function: ' + search);
+  console.log('this is the search value: ' + search);
   handleSearch(search);
   form.reset();
 
@@ -325,7 +325,7 @@ const handleSearch = async (search) => {
     fetch(SEARCH_API + `${search}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.results);
+        /*  console.log(data.results); */
         createItem(data.results);
       });
   } else {
